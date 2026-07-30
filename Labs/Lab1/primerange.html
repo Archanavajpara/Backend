@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime in Range</title>
+</head>
+<body>
+    <script>
+        const num1 = parseInt(prompt("Enter the lower bound:"));
+        const num2 = parseInt(prompt("Enter the upper bound:"));
+        document.write("Prime numbers between " + num1 + " and " + num2 + " are:<br>");
+        for (let num = num1; num <= num2; num++) {
+            let flag = true;
+            if (num <= 1) {
+                flag = false;
+            } else {
+                for (let i = 2; i <= num / 2; i++) {
+                    if (num % i === 0) {
+                        flag = false;
+                        break;
+                    }
+                }
+            }
+            if (flag) {
+                document.write(num + " ",separator=",");
+            }
+        }
+    </script>
+</body>
+</html>

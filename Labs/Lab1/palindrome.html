@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome</title>
+</head>
+<body>
+    <script>
+        const original = parseInt(prompt("Enter a number string:"));
+        let reverse = "";
+        for (let i = original.length - 1; i >= 0; i--) {
+            reverse += original[i];
+        }
+        if (original == reverse) {
+            document.write(original + " is a palindrome.");
+        } else {
+            document.write(original + " is not a palindrome.");
+        }
+    </script>
+</body>
+</html>

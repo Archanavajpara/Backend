@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let vs var</title>
+</head>
+<body>
+    <script>
+        function myFunction() { 
+            var x = 10;
+            let y = 20;   
+                if (true) {
+                    var x = 30; 
+                    let y = 40; 
+                    document.write("Inside block: Value of x: " + x + ", y: " + y + "<br>");
+                }
+            document.write("Outside block: Value of x: " + x + ", y: " + y + "<br>");
+        }
+        myFunction();
+    </script>
+</body>
+</html>

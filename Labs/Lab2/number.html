@@ -1,0 +1,51 @@
+<!-- Write an HTML page with JavaScript that takes a number from popup box in the range 0-999
+and display it in words. If the number is out of range, it should show “out of range” and if it is
+not a number ,it should show “not a number” message in the result box. (A) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number</title>
+</head>
+<body>
+    <script>
+        function numberToWords(num) {
+            if (isNaN(num)) {
+                return "Not a number";
+            }
+            if (num < 0 || num > 999) {
+                return "Out of range";
+            }
+
+            const units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+            const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+            const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+            let words = "";
+
+            if (num >= 100) {
+                words += units[Math.floor(num / 100)] + " Hundred ";
+                num %= 100;
+            }
+            if (num >= 20) {
+                words += tens[Math.floor(num / 10)] + " ";
+                num %= 10;
+            }
+            if (num >= 10) {
+                words += teens[num - 10] + " ";
+                num = 0;
+            }
+            if (num > 0) {
+                words += units[num] + " ";
+            }
+
+            return words.trim();
+        }
+
+        const number = prompt("Enter a number between 0 and 999:");
+        const result = numberToWords(number);
+        document.write("<span style='font-size:200px; color:blue;'>" + result + "</span>");
+    </script>
+</body>
+</html>
