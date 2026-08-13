@@ -22,6 +22,25 @@ export default function Page() {
       >
         Welcome to Lab 22
       </h1>
+      <ul>
+        <li>
+          <Link href="/lab22_1/dashboard">
+            Admin Dashboard
+          </Link>
+        </li>
+
+        <li>
+          <Link href="/lab22_2/login">
+            Auth Login
+          </Link>
+        </li>
+
+        <li>
+          <Link href="/lab22_2/home">
+            Client Home
+          </Link>
+        </li>
+      </ul>
 
       <p
         style={{
