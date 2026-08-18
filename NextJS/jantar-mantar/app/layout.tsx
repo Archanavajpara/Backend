@@ -63,6 +63,15 @@ export default function RootLayout({
                   Lab 22_2
                 </Link>
               </li>
+
+               <li style={{ margin: "15px 0" }}>
+                <Link
+                  href="/Lab25/mock_crud"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  Lab 25
+                </Link>
+              </li>
             </ul>
           </aside>
 
