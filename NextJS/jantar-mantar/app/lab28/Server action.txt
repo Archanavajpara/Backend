@@ -1,0 +1,111 @@
+1. What is a Server Action?
+
+A Server Action is a function that runs on the server and can be called directly from a React component, especially from a form.
+In simple words: Server Action = A function whose code executes on the server instead of the browser.
+
+"use server";
+
+Example:
+async function hello() {
+  "use server";
+
+  console.log("Hello from server");
+}
+
+Then we can use it directly with a form:
+
+<form action={hello}>
+  <button type="submit">Click</button>
+</form>
+
+2. Why do we need Server Actions?
+
+Suppose we have a registration form:
+
+Name
+Email
+Password
+     ↓
+   Submit
+
+Normally, we need to:
+
+Form
+ ↓
+API Request
+ ↓
+API Route
+ ↓
+Server
+ ↓
+Database
+
+With Server Actions, we can directly do:
+
+Form
+ ↓
+Server Action
+ ↓
+Database
+
+So it makes server-side form operations simpler.
+
+3. Normal Function vs Server Action
+
+This is one of the most important concepts to explain.
+
+Normal Function
+function add(a: number, b: number) {
+  return a + b;
+}
+
+This is just a normal JavaScript/TypeScript function.
+
+If used in a Client Component, it runs in the browser.
+Server Action
+async function addStudent(formData: FormData) {
+  "use server";
+
+  console.log("Running on server");
+}
+
+The: "use server"; tells Next.js: This function must execute on the server.
+
+| Normal Function                                                  | Server Action                                  |
+| ---------------------------------------------------------------- | ---------------------------------------------- |
+| Normal JS/TS function                                            | Special Next.js server function                |
+| Can run on client/server depending on component                  | Runs on server                                 |
+| Doesn't need `"use server"`                                      | Requires `"use server"`                        |
+| Cannot directly perform protected server operations from browser | Can perform server-side operations             |
+| Not specifically designed for forms                              | Designed especially for server mutations/forms |
+
+4. "use server" at the top of a file
+
+Example:
+
+actions.ts
+"use server";
+
+export async function addStudent(formData: FormData) {
+  console.log("Student added");
+}
+
+export async function deleteStudent(formData: FormData) {
+  console.log("Student deleted");
+}
+
+Now the exported functions in this file can be used as Server Actions.
+
+This is generally better when you have multiple actions.
+
+5. What is FormData?
+When a form is submitted, its input values are sent as a FormData object.
+
+6.Name is important
+
+This is very important.
+<input name="name" />
+
+formData.get("name")
+
+The names must match.

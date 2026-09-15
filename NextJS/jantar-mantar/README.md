@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prisma ORM + MySQL Task Application
 
-## Getting Started
+This application performs:
 
-First, run the development server:
+1. getAll
+2. getByID
+3. search
+4. getTasksByUserID
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Database
+
+MySQL database name:
+
+`taskdb`
+
+Tables:
+
+### User
+- UserID
+- UserName
+- Password
+
+### Task
+- TaskID
+- TaskTitle
+- TaskDescription
+- IsCompleted
+- UserID
+
+`Task.UserID` is a foreign key referencing `User.UserID`.
+
+## Requirements
+
+- Node.js
+- MySQL / XAMPP
+- npm
+
+## Setup
+
+### 1. Start MySQL
+
+If using XAMPP, start MySQL from the XAMPP Control Panel.
+
+### 2. Create database
+
+Open phpMyAdmin or MySQL and run:
+
+```sql
+CREATE DATABASE taskdb;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Install packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Create `.env`
 
-## Learn More
+Copy `.env.example` to `.env`.
 
-To learn more about Next.js, take a look at the following resources:
+For normal XAMPP MySQL with root and no password:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+DATABASE_URL="mysql://root:@localhost:3306/taskdb"
+PORT=3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If your MySQL root account has a password, put it after `root:`.
 
-## Deploy on Vercel
+### 5. Create tables with Prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx prisma migrate dev --name init
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 6. Insert sample data
+
+```bash
+node seed.js
+```
+
+### 7. Start application
+
+```bash
+npm start
+```
+
+Server:
+
+`http://localhost:3000`
+
+## API Operations
+
+### getAll
+
+```http
+GET http://localhost:3000/users
+```
+
+### getByID
+
+```http
+GET http://localhost:3000/users/1
+```
+
+### search
+
+```http
+GET http://localhost:3000/users/search?name=Arch
+```
+
+### getTasksByUserID
+    
+```http
+GET http://localhost:3000/users/1/tasks
+```
+
+## Important
+
+The Password field is included because it is required by the practical's table structure. In a real application, passwords should never be stored as plain text; they should be securely hashed.
