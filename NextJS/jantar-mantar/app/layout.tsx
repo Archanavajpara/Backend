@@ -81,7 +81,15 @@ export default function RootLayout({
                   Lab 26
                 </Link>
               </li>
-
+              <li style={{ margin: "15px 0" }}>
+                <Link
+                  href="/Lab27"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  Lab 27
+                </Link>
+              </li>
+              
                <li style={{ margin: "15px 0" }}>
                 <Link
                   href="/Lab28"
